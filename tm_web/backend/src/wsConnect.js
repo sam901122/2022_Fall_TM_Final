@@ -56,15 +56,13 @@ const wsConnect = {
 
     clusterTest: () => {
         let texts = [];
-        for(let i = 0 ; i < 10 ; i++){
-            if( i == 2 || i == 3 || i == 5 || i == 7){
-                readFile("../../../src_txt/林耕仁"+(i+1)+".txt")
-                .then((res) => {
-                    texts.push(res)
-                    console.log(i)
-                    console.log(res)
-                })
-            }
+        for(let i = 0 ; i < 3 ; i++){
+            readFile("../../../src_txt/"+(i)+".txt")
+            .then((res) => {
+                let t = res.split("\n")
+                console.log(t)
+                texts.push(res)
+            })
         }
     },
 

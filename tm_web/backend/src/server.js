@@ -4,7 +4,7 @@ const SocketServer = require( 'ws' ).Server
 const wsConnect = require( './wsConnect' ).wsConnect
 const fs = require('fs').promises
 
-const SERVER_IP = '192.168.1.111'
+const SERVER_IP = 'localhost'
 const csvPath = "../data/test_array.csv"
 
 const app = express()
