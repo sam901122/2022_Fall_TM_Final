@@ -1,4 +1,4 @@
-def get_tokenized_docs(text_mining_path, srctxt_path):
+def get_tokenized_docs( text_mining_path, srctxt_path ):
     # import
     import os
     import jieba
@@ -6,7 +6,7 @@ def get_tokenized_docs(text_mining_path, srctxt_path):
     # use dictionary
     jieba.load_userdict( text_mining_path + "/politic_dict.txt" )
     stop_words = []
-    f = open( text_mining_path + "/stop_word.txt" , encoding="utf8" )
+    f = open( text_mining_path + "/stop_word.txt", encoding="utf8" )
     stop_words = f.readlines()
     for i in range( len( stop_words ) ):
         stop_words[ i ] = stop_words[ i ][ :-1 ]
@@ -34,12 +34,12 @@ def get_tokenized_docs(text_mining_path, srctxt_path):
     return tokenized_docs
 
 
-def get_tf_idf(text_mining_path, srctxt_path):
+def get_tf_idf( text_mining_path, srctxt_path ):
     # import
     from sklearn.feature_extraction.text import TfidfVectorizer
 
     # get tokenzied docs
-    tokenized_docs = get_tokenized_docs(text_mining_path, srctxt_path)
+    tokenized_docs = get_tokenized_docs( text_mining_path, srctxt_path )
 
     # init vectorizer
     TFIDF_vecotrizer = TfidfVectorizer( analyzer='word',
@@ -52,9 +52,10 @@ def get_tf_idf(text_mining_path, srctxt_path):
     TFIDF_vector = TFIDF_vecotrizer.transform( tokenized_docs )
     return TFIDF_vector, TFIDF_vecotrizer
 
-def get_SVD_vectors(text_mining_path, srctxt_path, dim):
+
+def get_SVD_vectors( text_mining_path, srctxt_path, dim ):
     from sklearn.decomposition import TruncatedSVD
-    TFIDF_vectors = get_tf_idf(text_mining_path, srctxt_path)
-    svd_model = TruncatedSVD(n_components=dim)
-    SVD_vectors = svd_model.fit_transform(TFIDF_vectors)
+    TFIDF_vectors, _ = get_tf_idf( text_mining_path, srctxt_path )
+    svd_model = TruncatedSVD( n_components=dim )
+    SVD_vectors = svd_model.fit_transform( TFIDF_vectors )
     return SVD_vectors
