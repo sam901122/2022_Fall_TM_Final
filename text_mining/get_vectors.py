@@ -53,6 +53,26 @@ def get_tf_idf( text_mining_path, srctxt_path ):
     return TFIDF_vector, TFIDF_vecotrizer
 
 
+def get_tf( text_mining_path, srctxt_path ):
+    # import
+    from sklearn.feature_extraction.text import CountVectorizer
+
+    # get tokenzied docs
+    tokenized_docs = get_tokenized_docs( text_mining_path, srctxt_path )
+
+    # init vectorizer
+
+    TF_vectorizer = CountVectorizer( analyzer='word',
+                                     tokenizer=lambda x: x,
+                                     preprocessor=lambda x: x,
+                                     token_pattern=None )
+    TF_vectorizer.fit( tokenized_docs )
+
+    # get vector
+    TF_vector = TF_vectorizer.transform( tokenized_docs )
+    return TF_vector, TF_vectorizer
+
+
 def get_SVD_vectors( text_mining_path, srctxt_path, dim ):
     from sklearn.decomposition import TruncatedSVD
     TFIDF_vectors, _ = get_tf_idf( text_mining_path, srctxt_path )
