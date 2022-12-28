@@ -17,6 +17,25 @@ const readFile = async (path) => {
     return await fs.readFile(path, "utf-8");
 }
 
+const getNewsOfGroup = (path) => {
+    let txtPath;
+    let texts = []
+    let prom = readFile(path);
+    prom.then((res) => {
+        txtPath = res.split("\n")
+        for(let i = 0 ; i < txtPath.length ; i++){
+            let tmp = txtPath[i].replace(/\n|\r/g, "")
+            readFile("../../../src_txt/" + tmp)
+            .then((res) => {
+                texts.push(res)
+            })
+        }
+    })
+    .then(() => {
+        return texts;
+    })
+}
+
 const wsConnect = {
     test: (path) => {
         let txtPath;
@@ -33,6 +52,20 @@ const wsConnect = {
                 })
             }
         })
+    },
+
+    clusterTest: () => {
+        let texts = [];
+        for(let i = 0 ; i < 10 ; i++){
+            if( i == 2 || i == 3 || i == 5 || i == 7){
+                readFile("../../../src_txt/林耕仁"+(i+i)+".txt")
+                .then((res) => {
+                    texts.push(res)
+                    console.log(i+1)
+                    console.log(texts)
+                })
+            }
+        }
     },
 
     do: ( ws, wss ) => {

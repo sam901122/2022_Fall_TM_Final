@@ -11,7 +11,7 @@ const app = express()
 const server = http.createServer( app )
 const serverWS = new SocketServer( { server } )
 
-wsConnect.test(csvPath)
+wsConnect.clusterTest()
 
 serverWS.on( "connection", ( ws ) => {
     ws.onmessage = wsConnect.do( ws, serverWS)
