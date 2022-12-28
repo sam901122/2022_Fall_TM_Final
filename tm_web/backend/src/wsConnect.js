@@ -2,6 +2,8 @@ const { toUSVString } = require('util')
 
 const fs = require('fs').promises
 
+const testPath = "../data/test_array.csv"
+
 
 const sendData = ( data, ws ) => {
     ws.send( JSON.stringify( data ) )
@@ -38,20 +40,7 @@ const getNewsOfGroup = (path) => {
 
 const wsConnect = {
     test: (path) => {
-        let txtPath;
-        let prom = readFile(path);
-        prom.then((res) => {
-            txtPath = res.split("\n")
-            let texts = []
-            for(let i = 0 ; i < txtPath.length ; i++){
-                let tmp = txtPath[i].replace(/\n|\r/g, "")
-                readFile("../../../src_txt/" + tmp)
-                .then((res) => {
-                    texts.push(res)
-                    console.log(texts)
-                })
-            }
-        })
+        let returnArray = getNewsOfGroup(path);
     },
 
     clusterTest: () => {
@@ -82,7 +71,8 @@ const wsConnect = {
                 }
 
                 case "get_news": {
-                    
+                    let returnArray = getNewsOfGroup(testPath);
+                    console.log(returnArray)
                 }
             }
         })
