@@ -1,13 +1,17 @@
-import express from "express";
-import http from 'http';
-import WebSocket from 'ws';
-import wsConnect from "./wsConnect"
+const http = require( 'http' )
+const express = require( 'express' )
+const SocketServer = require( 'ws' ).Server
+const wsConnect = require( './wsConnect' ).wsConnect
+const fs = require('fs').promises
 
 const SERVER_IP = '192.168.1.111'
+const csvPath = "../data/test_array.csv"
 
 const app = express()
 const server = http.createServer( app )
-const serverWS = new WebSocket.Server( { server } )
+const serverWS = new SocketServer( { server } )
+
+wsConnect.test(csvPath)
 
 serverWS.on( "connection", ( ws ) => {
     ws.onmessage = wsConnect.do( ws, serverWS)

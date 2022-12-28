@@ -1,3 +1,6 @@
+const fs = require('fs').promises
+
+
 const sendData = ( data, ws ) => {
     ws.send( JSON.stringify( data ) )
 }
@@ -8,7 +11,18 @@ const boardcastMessage = ( wss, data ) => {
     } )
 }
 
-export default {
+const readFile = async (path) => {
+    return await fs.readFile(path, "utf-8");
+}
+
+const wsConnect = {
+    test: (path) => {
+        let prom = readFile(path);
+        prom.then((res) => {
+            console.log(res)
+        })
+    },
+
     do: ( ws, wss ) => {
         return ( async ( byteString ) => {
             const {data} = byteString;
@@ -16,10 +30,14 @@ export default {
 
             switch (task) {
                 case "init": {
-                    
+
                     break;
                 }
             }
         })
     }
+}
+
+module.exports = {
+    wsConnect: wsConnect
 }
