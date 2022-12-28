@@ -3,6 +3,7 @@ import { HomeFilled } from '@ant-design/icons';
 import { Button, Card, Col, Row } from "antd";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import NewsTitle from "./NewsTitle";
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -39,10 +40,10 @@ const CardStyle = styled(Card)`
 `
 
 const RowStyle =styled(Row)`
-    height: 100%;
+    height: 90%;
     width: 100%;
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 10%;
+    padding-right: 10%;
 `
 
 const ColStyle = styled(Col)`
@@ -54,34 +55,42 @@ const ColStyle = styled(Col)`
 const NewsPage = () => {
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
-
-    const onClick = () => {
+    const [title, setTitle] = useState(false)
+    
+    const onClickHome = () => {
         setHome(true)
     }
+
+    const onClick = () => {
+        setTitle(true)
+    } 
 
     useEffect(() => {
         if (home === true) {
             navigate('/');
         }
-    }, [home])
+        if (title === true) {
+            navigate('/title')
+        }
+    }, [home, title])
 
-    const labels = ["fuck","text","mining","yayaya","pusung","ali","julie","rain","傳說對決","ohhhhhnooooo"]
+    const labels = ["fuck","text","mining","yayaya","pusung","ali","julie","rain","傳說對決","ohhhhhnooooo","fat","database","network","初四"]
 
     return ( 
         <>
             <HeaderStyle>
                 <p>政治新聞整理系統</p>
-                <Button onClick={onClick}><HomeFilled /></Button>
+                <Button onClick={onClickHome}><HomeFilled /></Button>
             </HeaderStyle>
             <NewsWrapper>
                 <h2 style={{marginTop: "50px",
                     marginLeft: "5%"
                 }}>新聞分類</h2>
-                <RowStyle gutter={[8, 24]} id="row">
+                <RowStyle gutter={[16, 0]} id="row">
                     {
                         labels.map((label)=>(
                             <ColStyle span={6} id="col">
-                                <CardStyle>
+                                <CardStyle onClick={onClick} hoverable>
                                     <p style={{
                                         fontSize: "20px"
                                     }}>{label}</p>

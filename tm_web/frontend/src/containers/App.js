@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import MainPage from "./MainPage"
 import NewsPage from './NewsPage';
+import NewsTitle from './NewsTitle';
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route>
             <Route index element={<MainPage />} />
             <Route path="Hsinchu" element={<NewsPage />} />
+            <Route path="title" element={<NewsTitle />} />
         </Route>
       </Routes>
     </Wrapper>
