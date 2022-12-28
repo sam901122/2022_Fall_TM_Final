@@ -60,7 +60,11 @@ const wsConnect = {
             readFile("../../../src_txt/"+(i)+".txt")
             .then((res) => {
                 let t = res.split("\n")
-                console.log(t)
+                let obj = {}
+                obj.topic = t[0]
+                obj.url = t[1]
+                obj.body = t[2]
+                console.log(obj)
                 texts.push(res)
             })
         }
