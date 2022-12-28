@@ -80,9 +80,10 @@ def get_SVD_vectors( text_mining_path, srctxt_path, dim ):
     SVD_vectors = svd_model.fit_transform( TFIDF_vectors )
     return SVD_vectors
 
-def get_LDA_vectors(text_mining_path, srctxt_path, dim ):
+
+def get_LDA_vectors( text_mining_path, srctxt_path, dim ):
     from sklearn.decomposition import LatentDirichletAllocation as LDA
     TF_vectors, _ = get_tf( text_mining_path, srctxt_path )
-    lda_model = LDA(n_components=dim)
-    LDA_vectors = lda_model.fit_transform(TF_vectors)
+    lda_model = LDA( n_components=dim )
+    LDA_vectors = lda_model.fit_transform( TF_vectors )
     return LDA_vectors
