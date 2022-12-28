@@ -80,6 +80,10 @@ const wsConnect = {
 
                     break;
                 }
+
+                case "get_news": {
+                    
+                }
             }
         })
     }

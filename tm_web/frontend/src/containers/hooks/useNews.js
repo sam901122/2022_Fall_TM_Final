@@ -22,10 +22,12 @@ const NewsProvider = ( props ) => {
     const [news, setNews] = useState([]);
 
     // sending request
-    
+    const get_news = (type) => {
+        sendData(["get_news", type]);
+    }
 
     // receiving data
-
+    
 
     return (
         <NewsContext.Provider
