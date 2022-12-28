@@ -58,11 +58,11 @@ const wsConnect = {
         let texts = [];
         for(let i = 0 ; i < 10 ; i++){
             if( i == 2 || i == 3 || i == 5 || i == 7){
-                readFile("../../../src_txt/林耕仁"+(i+i)+".txt")
+                readFile("../../../src_txt/林耕仁"+(i+1)+".txt")
                 .then((res) => {
                     texts.push(res)
-                    console.log(i+1)
-                    console.log(texts)
+                    console.log(i)
+                    console.log(res)
                 })
             }
         }
