@@ -8,16 +8,29 @@ const sendData = async (data) => {
 
 const NewsContext = createContext(
     {
+        labels: [],
+        setLabels: () => {},
 
+        news: [],
+        setNews: () => {},
     }
 )
 
 const NewsProvider = ( props ) => {
 
+    const [labels, setLabels] = useState(["Pusung, Rain, John, Liang, Alistone"]);
+    const [news, setNews] = useState([]);
+
+    // sending request
+    
+
+    // receiving data
+
+
     return (
         <NewsContext.Provider
             value={{
-    
+                
             }}
             {...props}
         />
