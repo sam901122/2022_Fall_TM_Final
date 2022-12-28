@@ -65,6 +65,8 @@ const NewsPage = () => {
         }
     }, [home])
 
+    const labels = ["fuck","text","mining","yayaya","pusung","ali","julie","rain","傳說對決","ohhhhhnooooo"]
+
     return ( 
         <>
             <HeaderStyle>
@@ -76,71 +78,17 @@ const NewsPage = () => {
                     marginLeft: "5%"
                 }}>新聞分類</h2>
                 <RowStyle gutter={[8, 24]} id="row">
-                    <ColStyle span={6} id="col">
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-
-                    <ColStyle span={6} id="col">
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6} id="col">
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>
-                    <ColStyle span={6}>
-                        <CardStyle>
-                            <p style={{
-                                fontSize: "20px"
-                            }}>風城大亂鬥</p>
-                        </CardStyle>
-                    </ColStyle>      
+                    {
+                        labels.map((label)=>(
+                            <ColStyle span={6} id="col">
+                                <CardStyle>
+                                    <p style={{
+                                        fontSize: "20px"
+                                    }}>{label}</p>
+                                </CardStyle>
+                            </ColStyle>
+                        ))
+                    }
                 </RowStyle>
             </NewsWrapper>
         </>
