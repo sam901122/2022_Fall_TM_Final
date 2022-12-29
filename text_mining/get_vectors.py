@@ -14,10 +14,9 @@ def get_tokenized_docs( text_mining_path, srctxt_path ):
 
     # read docs
     docs = []
-    for fileName in os.listdir( srctxt_path ):
-        if fileName.endswith( '.txt' ) == False:
-            continue
-
+    doc_cnt = len( list( filter( lambda fileName: fileName.endswith( 'txt' ), os.listdir( srctxt_path ) ) ) )
+    for i in range( doc_cnt ):
+        fileName = f'{i}.txt'
         file = open( f'{srctxt_path}/{fileName}', encoding="utf8" )
         doc = file.readlines()[ 2: ]
         doc = ''.join( doc ).replace( '\n', '' )
