@@ -3,11 +3,6 @@ import { useState, createContext, useContext, useEffect } from "react";
 
 const client = new WebSocket('ws://localhost:4000/')
 
-client.onopen = () => {
-    console.log("sent")
-    sendData(["get_all_news"])
-}
-
 const sendData = async (data) => {
     await client.send(JSON.stringify(data));
 }
