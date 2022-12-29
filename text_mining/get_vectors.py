@@ -87,3 +87,10 @@ def get_LDA_vectors( text_mining_path, srctxt_path, dim ):
     lda_model = LDA( n_components=dim )
     LDA_vectors = lda_model.fit_transform( TF_vectors )
     return LDA_vectors
+
+
+def get_txt_cnt( srctxt_path ):
+    import os
+
+    fileNames = os.listdir( srctxt_path )
+    return len( list( filter( lambda txt: txt.endswith( '.txt' ), fileNames ) ) )
