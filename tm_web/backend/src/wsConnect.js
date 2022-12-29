@@ -69,9 +69,13 @@ const wsConnect = {
                 }
 
                 case "get_news": {
-                    // const allFilesNameString = fs.readFileSync(path, "utf-8")
-                    // const allFilesNameArray = getArrayOfFiles(allFilesNameString)
-                    // const objArray = getNews(allFilesNameArray)
+                    const tmpPath = "../data/" + payload + ".csv"
+                    const path = require('path').resolve(__dirname, tmpPath)
+                    const allFilesNameString = fs.readFileSync(path, "utf-8")
+                    const allFilesNameArray = getArrayOfFiles(allFilesNameString)
+                    const objArray = getNews(allFilesNameArray)
+                    sendData(["rp_beta_get_news", objArray], ws)
+                    break;
                 }
             }
         })

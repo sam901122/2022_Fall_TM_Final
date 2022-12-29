@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Col, Row, Table, Modal} from "antd";
 import { useState,useEffect } from "react";
 import { HomeFilled } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useNews } from "../containers/hooks/useNews";
+import NewsDetail from "../components/NewsDetial"
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -28,26 +29,57 @@ background-color: cadetblue;
 opacity: 0.3;
 `
 
+const TitleWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+`
+
+const CardWrapper=styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap
+`
+
 const NewsTitle = () => {
-    const { curLabel } = useNews()
+    const { curLabel, news , beta_get_news} = useNews()
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
+    const { Column } = Table;
+
     const onClickHome = () => {
         setHome(true)
     }
-    console.log("cur",curLabel)
+
     useEffect(() => {
         if (home === true) {
             navigate('/');
         }
     }, [home])
+
+
+    console.log(news)
+
     return ( 
         <>
             <HeaderStyle>
                 <p>政治新聞整理系統</p>
                 <Button onClick={onClickHome}><HomeFilled /></Button>
             </HeaderStyle>
-            <p>{curLabel}</p>
+            <TitleWrapper> 
+                <h2 style={{marginLeft: "5%", marginTop: "50px", alignSelf: "flex-start"}}>完整新聞</h2>  
+                <CardWrapper>
+                    {
+                        news.map((oneNews)=>(
+                            <NewsDetail oneNews={oneNews}/>
+                        ))
+                    }
+                </CardWrapper>
+            </TitleWrapper>
         </>
     );
 }

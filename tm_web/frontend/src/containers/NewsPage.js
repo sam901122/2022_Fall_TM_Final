@@ -54,7 +54,6 @@ const ColStyle = styled(Col)`
     justify-content: center;
     align-items: center;
     
-
     th{
         font-family: serif;
         font-size: 20px;
@@ -88,15 +87,11 @@ const RightCircleOutlinedStyle = styled(RightCircleOutlined)`
 `
 
 const NewsPage = () => {
-    const { labels, curLabel, setCurLabel, news } = useNews();
+    const { labels, curLabel, setCurLabel, beta_get_news, news } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
     const { Column } = Table;
-    
-    useEffect(()=>{
-        console.log("currrrr", curLabel)
-    },[curLabel])
 
     const onClickHome = () => {
         setHome(true)
@@ -105,6 +100,7 @@ const NewsPage = () => {
     const onClick = (label) => {
         setTitle(true)
         setCurLabel(label);
+        beta_get_news();
     } 
 
     useEffect(() => {
@@ -136,7 +132,7 @@ const NewsPage = () => {
                                         <Column title={
                                             <CateStyle>
                                                 <p>{label}</p>
-                                                <RightCircleOutlinedStyle/>
+                                                <RightCircleOutlinedStyle onClick={()=>(onClick(label))}/>
                                             </CateStyle>} dataIndex="title" id="insideCol"/>
                                     </TableStyle>
                                 </ColStyle>
