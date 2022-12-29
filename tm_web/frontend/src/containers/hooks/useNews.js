@@ -30,7 +30,7 @@ const NewsProvider = ( props ) => {
 
     // sending request
     const beta_get_news = () => {
-        console.log("sent"  )
+        console.log("sent")
         sendData(["beta_get_news"])
     }
 
@@ -58,6 +58,7 @@ const NewsProvider = ( props ) => {
                 curLabel,
                 beta_get_news,
                 setCurLabel,
+                get_news,
             }}
             {...props}
         />
