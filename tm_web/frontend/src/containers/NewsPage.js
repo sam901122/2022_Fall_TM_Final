@@ -87,10 +87,14 @@ const RightCircleOutlinedStyle = styled(RightCircleOutlined)`
 `
 
 const NewsPage = () => {
-    const { labels, curLabel, setCurLabel, get_news, news } = useNews();
+    const { labels, curLabel, setCurLabel, get_news, news,  type1News, type2News, type3News } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
+    const [type1, setType1] = useState([])
+    const [type2, setType2] = useState([])
+    const [type3, setType3] = useState([])
+
     const { Column } = Table;
 
     const onClickHome = () => {
@@ -113,7 +117,12 @@ const NewsPage = () => {
         }
     }, [home, title])
 
-    console.log("new",news)    
+    useEffect(()=>{
+        setType1(type1News.slice(0,4))
+        setType2(type2News.slice(22,26))
+        setType3(type3News.slice(10,14))
+    },[type1News, type2News, type3News])
+
 
     return ( 
         <>
@@ -126,19 +135,38 @@ const NewsPage = () => {
                     marginLeft: "5%"
                 }}>新聞分類</h2>
                 <RowStyle gutter={[8, 24]} id="row">
-                    {
-                        labels.map((label)=>(
-                                <ColStyle span={8} id="col">
-                                    <TableStyle  dataSource={news} pagination={false}>
-                                        <Column title={
-                                            <CateStyle>
-                                                <p>{label}</p>
-                                                <RightCircleOutlinedStyle onClick={()=>(onClick(label))}/>
-                                            </CateStyle>} dataIndex="title" id="insideCol"/>
-                                    </TableStyle>
-                                </ColStyle>
-                        ))
-                    }
+                
+                    <ColStyle span={8} id="col">
+                        <TableStyle  dataSource={type1} pagination={false}>
+                            <Column title={
+                                <CateStyle>
+                                    <p>{labels[0]}</p>
+                                    <RightCircleOutlinedStyle onClick={()=>(onClick(labels[0]))}/>
+                                </CateStyle>} 
+                            dataIndex="title"/>
+                        </TableStyle>
+                    </ColStyle>  
+                    <ColStyle span={8} id="col">
+                        <TableStyle  dataSource={type2} pagination={false}>
+                            <Column title={
+                                <CateStyle>
+                                    <p>{labels[1]}</p>
+                                    <RightCircleOutlinedStyle onClick={()=>(onClick(labels[1]))}/>
+                                </CateStyle>} 
+                                dataIndex="title" id="insideCol"/>
+                        </TableStyle>
+                    </ColStyle>
+                    <ColStyle span={8} id="col">
+                        <TableStyle  dataSource={type3} pagination={false}>
+                            <Column title={
+                                <CateStyle>
+                                    <p>{labels[2]}</p>
+                                    <RightCircleOutlinedStyle onClick={()=>(onClick(labels[2]))}/>
+                                </CateStyle>} 
+                                dataIndex="title" id="insideCol"/>
+                        </TableStyle>
+                    </ColStyle>                                          
+
                 </RowStyle>
             </NewsWrapper>
         </>

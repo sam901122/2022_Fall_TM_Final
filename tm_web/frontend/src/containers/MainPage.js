@@ -15,14 +15,13 @@ import NewsPage from "./NewsPage";
 import { useNews } from "./hooks/useNews";
 
 const MainPage = () => {
-    const {get_news, news} = useNews();
+    const {get_news, news, get_all_news} = useNews();
     const navigate = useNavigate();
     const [Hsinchu, setHsinchu] = useState(false)
 
     const onClick = () => {
         setHsinchu(true);
-        get_news(1);
-        console.log("news",news);
+        get_all_news();
     }
 
     useEffect(() => {
