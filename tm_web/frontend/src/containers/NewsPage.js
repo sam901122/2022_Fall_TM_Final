@@ -146,7 +146,7 @@ const NewsPage = () => {
                     {
                         labels.map((label)=>(
                                 <ColStyle span={8} id="col">
-                                    <TableStyle  dataSource={data} pagination={false}>
+                                    <TableStyle  dataSource={news} pagination={false}>
                                         <Column title={
                                             <CateStyle>
                                                 <p>{label}</p>
