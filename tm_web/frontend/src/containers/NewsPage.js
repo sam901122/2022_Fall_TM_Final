@@ -116,18 +116,6 @@ const NewsPage = () => {
         }
     }, [home, title])
 
-    const data = [
-        {
-            title:"張善政、林耕仁連爆抄襲 賴香伶：將升為政黨信任度的綜合指標",
-        },
-        {
-            title:"告吳子嘉 傳票惹議 沈慧虹：不解檢討被害人",
-        },
-        {
-            title:"論文參考文獻事後加工？ 高虹安稱非她所能擅自修改上傳",
-        },
-      ];
-      
     console.log("new",news)    
 
     return ( 

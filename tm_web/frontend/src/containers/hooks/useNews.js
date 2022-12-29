@@ -24,7 +24,7 @@ const NewsContext = createContext(
 
 const NewsProvider = ( props ) => {
 
-    const [labels, setLabels] = useState(["Pusung", "Rain", "John"]);
+    const [labels, setLabels] = useState(["選舉", "事件", "政見"]);
     const [news, setNews] = useState([]);
     const [ curLabel, setCurLabel ] = useState("");
 
