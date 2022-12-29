@@ -87,7 +87,7 @@ const RightCircleOutlinedStyle = styled(RightCircleOutlined)`
 `
 
 const NewsPage = () => {
-    const { labels, curLabel, setCurLabel, beta_get_news, news } = useNews();
+    const { labels, curLabel, setCurLabel, get_news, news } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
@@ -100,7 +100,8 @@ const NewsPage = () => {
     const onClick = (label) => {
         setTitle(true)
         setCurLabel(label);
-        beta_get_news();
+        get_news(3);
+        console.log("2",news)
     } 
 
     useEffect(() => {
