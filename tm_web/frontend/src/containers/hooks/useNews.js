@@ -18,6 +18,7 @@ const NewsContext = createContext(
         curLabel: "",
         setCurLabel: () => {},
 
+        beta_get_news: () => {},
     }
 )
 
