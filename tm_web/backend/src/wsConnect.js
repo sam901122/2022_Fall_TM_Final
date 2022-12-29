@@ -1,9 +1,9 @@
 const { toUSVString } = require('util')
 
-const fs = require('fs').promises
+const fs = require('fs')
 
 const testPath = "../data/test_array.csv"
-
+const dataFilePath = "../../../src_txt/"
 
 const sendData = ( data, ws ) => {
     ws.send( JSON.stringify( data ) )
@@ -15,48 +15,40 @@ const boardcastMessage = ( wss, data ) => {
     } )
 }
 
-const readFile = async (path) => {
-    return await fs.readFile(path, "utf-8");
+
+// functions
+const getArrayOfFiles = (inputString) => {
+    let array = inputString.split("\n")
+    for (let i = 0 ; i < array.length ; i++){
+        array[i] = array[i].replace(/\n|\r/g, "")
+    }
+    return array
 }
 
-const getNewsOfGroup = (path) => {
-    let txtPath;
-    let texts = []
-    let prom = readFile(path);
-    prom.then((res) => {
-        txtPath = res.split("\n")
-        for(let i = 0 ; i < txtPath.length ; i++){
-            let tmp = txtPath[i].replace(/\n|\r/g, "")
-            readFile("../../../src_txt/" + tmp)
-            .then((res) => {
-                texts.push(res)
-            })
-        }
-    })
-    .then(() => {
-        return texts;
-    })
+const getNews = (arrayOfNames) => {
+    let returnArray = []
+    for (let i = 0 ; i < arrayOfNames.length ; i++){
+        let text = fs.readFileSync(String(dataFilePath) + arrayOfNames[i], "utf-8")
+        text = text.split("\n")
+        
+        let obj = {}
+        obj.title = text[0]
+        obj.url = text[1]
+        obj.body = text[2]
+
+        returnArray.push(obj)
+    }
+    return returnArray
 }
 
+
+// wsConnect
 const wsConnect = {
     test: (path) => {
-        let returnArray = getNewsOfGroup(path);
-    },
-
-    clusterTest: () => {
-        let texts = [];
-        for(let i = 0 ; i < 3 ; i++){
-            readFile("../../../src_txt/"+(i)+".txt")
-            .then((res) => {
-                let t = res.split("\n")
-                let obj = {}
-                obj.topic = t[0]
-                obj.url = t[1]
-                obj.body = t[2]
-                console.log(obj)
-                texts.push(res)
-            })
-        }
+        const allFilesNameString = fs.readFileSync(path, "utf-8")
+        const allFilesNameArray = getArrayOfFiles(allFilesNameString)
+        const objArray = getNews(allFilesNameArray)
+        console.log(objArray)
     },
 
     do: ( ws, wss ) => {
