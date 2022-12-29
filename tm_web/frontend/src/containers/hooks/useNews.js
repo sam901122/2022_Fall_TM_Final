@@ -24,12 +24,13 @@ const NewsContext = createContext(
 
 const NewsProvider = ( props ) => {
 
-    const [labels, setLabels] = useState(["Pusung, Rain, John, Liang, Alistone"]);
+    const [labels, setLabels] = useState(["Pusung", "Rain", "John"]);
     const [news, setNews] = useState([]);
     const [ curLabel, setCurLabel ] = useState("");
 
     // sending request
     const beta_get_news = () => {
+        console.log("sent"  )
         sendData(["beta_get_news"])
     }
 
@@ -43,7 +44,6 @@ const NewsProvider = ( props ) => {
         const [task, payload] = JSON.parse( data )
         switch (task) {
             case "rp_beta_get_news": {
-                console.log(payload);
                 setNews(payload)
                 break
             }

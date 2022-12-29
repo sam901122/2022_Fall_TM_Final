@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { HomeFilled } from '@ant-design/icons';
-import { Button, Card, Col, Row } from "antd";
+import { HomeFilled, RightCircleOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Row, Table } from "antd";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NewsTitle from "./NewsTitle";
@@ -34,10 +34,10 @@ const NewsWrapper = styled.div`
     height: fit-content;
     background-color: aliceblue;
 `
-const CardStyle = styled(Card)`
+const TableStyle = styled(Table)`
     width: 90%;
     height:80%;
-    box-shadow: 4px 4px 5px rgba(0.2, 0.2, 0.2, 0.2);
+    border-radius:20px;
 `
 
 const RowStyle =styled(Row)`
@@ -48,16 +48,51 @@ const RowStyle =styled(Row)`
 `
 
 const ColStyle = styled(Col)`
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+
+    th{
+        font-family: serif;
+        font-size: 20px;
+        font-weight: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    td{
+        font-size: 16px;
+        font-weight: bold;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+`
+
+const CateStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const RightCircleOutlinedStyle = styled(RightCircleOutlined)`
+    opacity:0.5;
+
+    &:hover{
+        opacity: 1;
+    }
 `
 
 const NewsPage = () => {
-    const { curLabel, setCurLabel } = useNews();
+    const { labels, curLabel, setCurLabel, news } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
+    const { Column } = Table;
     
     useEffect(()=>{
         console.log("currrrr", curLabel)
@@ -81,7 +116,19 @@ const NewsPage = () => {
         }
     }, [home, title])
 
-    const labels = ["fuck","text","mining","yayaya","pusung","ali","julie","rain","傳說對決","ohhhhhnooooo","fat","database","network","初四"]
+    const data = [
+        {
+            title:"張善政、林耕仁連爆抄襲 賴香伶：將升為政黨信任度的綜合指標",
+        },
+        {
+            title:"告吳子嘉 傳票惹議 沈慧虹：不解檢討被害人",
+        },
+        {
+            title:"論文參考文獻事後加工？ 高虹安稱非她所能擅自修改上傳",
+        },
+      ];
+      
+    console.log("new",news)    
 
     return ( 
         <>
@@ -93,16 +140,18 @@ const NewsPage = () => {
                 <h2 style={{marginTop: "50px",
                     marginLeft: "5%"
                 }}>新聞分類</h2>
-                <RowStyle gutter={[16, 0]} id="row">
+                <RowStyle gutter={[8, 24]} id="row">
                     {
                         labels.map((label)=>(
-                            <ColStyle span={6} id="col">
-                                <CardStyle onClick={()=>(onClick(label))} hoverable>
-                                    <p style={{
-                                        fontSize: "20px"
-                                    }}>{label}</p>
-                                </CardStyle>
-                            </ColStyle>
+                                <ColStyle span={8} id="col">
+                                    <TableStyle  dataSource={news} pagination={false}>
+                                        <Column title={
+                                            <CateStyle>
+                                                <p>{label}</p>
+                                                <RightCircleOutlinedStyle/>
+                                            </CateStyle>} dataIndex="title" id="insideCol"/>
+                                    </TableStyle>
+                                </ColStyle>
                         ))
                     }
                 </RowStyle>
