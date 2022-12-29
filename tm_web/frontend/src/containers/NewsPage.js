@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { HomeFilled } from '@ant-design/icons';
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Col, Row, Table } from "antd";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NewsTitle from "./NewsTitle";
@@ -58,6 +58,7 @@ const NewsPage = () => {
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
+    const { Column } = Table;
     
     useEffect(()=>{
         console.log("currrrr", curLabel)
@@ -83,7 +84,8 @@ const NewsPage = () => {
         }
     }, [home, title])
 
-    const labels = ["fuck","text","mining","yayaya","pusung","ali","julie","rain","傳說對決","ohhhhhnooooo","fat","database","network","初四"]
+    const labels = ["fuck","text","mining"]
+    
 
     return ( 
         <>
@@ -95,16 +97,14 @@ const NewsPage = () => {
                 <h2 style={{marginTop: "50px",
                     marginLeft: "5%"
                 }}>新聞分類</h2>
-                <RowStyle gutter={[16, 0]} id="row">
+                <RowStyle gutter={[8, 24]} id="row">
                     {
                         labels.map((label)=>(
-                            <ColStyle span={6} id="col">
-                                <CardStyle onClick={()=>(onClick(label))} hoverable>
-                                    <p style={{
-                                        fontSize: "20px"
-                                    }}>{label}</p>
-                                </CardStyle>
-                            </ColStyle>
+                                <ColStyle span={8} id="col">
+                                    <Table  dataSource={}>
+                                        <Column title={label} dataIndex="firstName" key="firstName" />
+                                    </Table>
+                                </ColStyle>
                         ))
                     }
                 </RowStyle>
