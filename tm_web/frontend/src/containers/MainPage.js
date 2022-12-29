@@ -12,13 +12,17 @@ import tainanIMG from "../img/Tainan.jpg"
 import kaoIMG from "../img/Kaohsiung.jpg"
 import chayiIMG from "../img/Chayi.jpg"
 import NewsPage from "./NewsPage";
+import { useNews } from "./hooks/useNews";
 
 const MainPage = () => {
+    const {beta_get_news} = useNews();
     const navigate = useNavigate();
     const [Hsinchu, setHsinchu] = useState(false)
 
     const onClick = () => {
-        setHsinchu(true)
+        setHsinchu(true);
+        beta_get_news();
+        console.log("click 新竹")
     }
 
     useEffect(() => {
@@ -196,7 +200,7 @@ const MainPage = () => {
                         <div className="text">基隆市</div>
                     </CityStyle>
                 </ColStyle>
-                <ColStyle span={8} id="col" onClick={onClick}>
+                <ColStyle span={8} id="col" onClick={()=>(onClick())}>
                     <CityStyle bordered={false}>
                         <img src={hsinIMG}></img>
                         <div className="text">新竹市</div>
