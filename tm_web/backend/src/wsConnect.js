@@ -30,12 +30,10 @@ const getNews = (arrayOfNames) => {
     for (let i = 0 ; i < arrayOfNames.length ; i++){
         let text = fs.readFileSync(String(dataFilePath) + arrayOfNames[i], "utf-8")
         text = text.split("\n")
-        
         let obj = {}
         obj.title = text[0]
         obj.url = text[1]
         obj.body = text[2]
-
         returnArray.push(obj)
     }
     return returnArray
@@ -57,14 +55,18 @@ const wsConnect = {
             const [task, payload] = JSON.parse( data );
 
             switch (task) {
-                case "init": {
-
+                case "beta_get_news": {
+                    const allFilesNameString = fs.readFileSync(testPath, "utf-8")
+                    const allFilesNameArray = getArrayOfFiles(allFilesNameString)
+                    const objArray = getNews(allFilesNameArray)
+                    sendData(["rp_beta_get_news", objArray])
                     break;
                 }
 
                 case "get_news": {
-                    let returnArray = getNewsOfGroup(testPath);
-                    console.log(returnArray)
+                    // const allFilesNameString = fs.readFileSync(path, "utf-8")
+                    // const allFilesNameArray = getArrayOfFiles(allFilesNameString)
+                    // const objArray = getNews(allFilesNameArray)
                 }
             }
         })

@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
 
-const client = new WebSocket('ws://172.20.10.3:4000/')
+const client = new WebSocket('ws://localhost:4000/')
 
 const sendData = async (data) => {
     await client.send(JSON.stringify(data));
@@ -22,17 +22,32 @@ const NewsProvider = ( props ) => {
     const [news, setNews] = useState([]);
 
     // sending request
+    const beta_get_news = () => {
+        sendData(["beta_get_news"])
+    }
+
     const get_news = (type) => {
         sendData(["get_news", type]);
     }
 
     // receiving data
-    
+    client.onmessage = ( byteString ) => {
+        const { data } = byteString
+        const [task, payload] = JSON.parse( data )
+        switch (task) {
+            case "rp_beta_get_news": {
+                setNews(payload)
+                break
+            }
+        }
+    }
 
     return (
         <NewsContext.Provider
             value={{
-                
+                labels,
+                news,
+                beta_get_news,
             }}
             {...props}
         />
