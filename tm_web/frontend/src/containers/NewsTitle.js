@@ -5,6 +5,7 @@ import { HomeFilled } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useNews } from "../containers/hooks/useNews";
 import NewsDetail from "../components/NewsDetial"
+import ScrollToTop from "react-scroll-to-top";
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -27,6 +28,8 @@ text-align: justify;
 width: 100%;
 background-color: cadetblue;
 opacity: 0.3;
+position: fixed;
+z-index:100;
 `
 
 const TitleWrapper = styled.div`
@@ -73,7 +76,7 @@ const NewsTitle = () => {
                 <Button onClick={onClickHome}><HomeFilled /></Button>
             </HeaderStyle>
             <TitleWrapper> 
-                <h2 style={{marginLeft: "5%", marginTop: "50px", alignSelf: "flex-start"}}>完整新聞</h2>  
+                <h2 style={{marginLeft: "5%", marginTop: "110px", alignSelf: "flex-start"}}>完整新聞</h2>  
                 <CardWrapper>
                     {
                         news.map((oneNews)=>(
@@ -82,6 +85,7 @@ const NewsTitle = () => {
                     }
                 </CardWrapper>
             </TitleWrapper>
+            <ScrollToTop smooth />
         </>
     );
 }
