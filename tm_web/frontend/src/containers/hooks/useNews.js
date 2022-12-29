@@ -33,7 +33,7 @@ const NewsContext = createContext(
 
 const NewsProvider = ( props ) => {
 
-    const [labels, setLabels] = useState(["選舉", "事件", "政見"]);
+    const [labels, setLabels] = useState(["選情", "事件", "政見"]);
     const [news, setNews] = useState([]);
     const [ curLabel, setCurLabel ] = useState("");
     const [type1News, setType1News] = useState([]);
@@ -70,6 +70,7 @@ const NewsProvider = ( props ) => {
             }
 
             case "rp_get_all_news": {
+                console.log(payload)
                 setType1News(payload[0])
                 setType2News(payload[1])
                 setType3News(payload[2])
@@ -84,9 +85,13 @@ const NewsProvider = ( props ) => {
                 labels,
                 news,
                 curLabel,
+                type1News,
+                type2News,
+                type3News,
                 beta_get_news,
                 setCurLabel,
                 get_news,
+                get_all_news,
             }}
             {...props}
         />

@@ -5,6 +5,7 @@ import { HomeFilled } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useNews } from "../containers/hooks/useNews";
 import NewsDetail from "../components/NewsDetial"
+import ScrollToTop from "react-scroll-to-top";
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -27,6 +28,8 @@ text-align: justify;
 width: 100%;
 background-color: cadetblue;
 opacity: 0.3;
+position: fixed;
+z-index:100;
 `
 
 const TitleWrapper = styled.div`
@@ -42,11 +45,13 @@ const CardWrapper=styled.div`
     display: flex;
     width: 100%;
     justify-content: space-evenly;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    background-color: aliceblue;
+    padding-bottom: 70px;
 `
 
 const NewsTitle = () => {
-    const { curLabel, news , beta_get_news} = useNews()
+    const { curLabel, news } = useNews()
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const { Column } = Table;
@@ -62,7 +67,7 @@ const NewsTitle = () => {
     }, [home])
 
 
-    console.log(news)
+    console.log("news",news)
 
     return ( 
         <>
@@ -71,7 +76,7 @@ const NewsTitle = () => {
                 <Button onClick={onClickHome}><HomeFilled /></Button>
             </HeaderStyle>
             <TitleWrapper> 
-                <h2 style={{marginLeft: "5%", marginTop: "50px", alignSelf: "flex-start"}}>完整新聞</h2>  
+                <h2 style={{marginLeft: "5%", marginTop: "110px", alignSelf: "flex-start"}}>完整新聞</h2>  
                 <CardWrapper>
                     {
                         news.map((oneNews)=>(
@@ -80,6 +85,7 @@ const NewsTitle = () => {
                     }
                 </CardWrapper>
             </TitleWrapper>
+            <ScrollToTop smooth />
         </>
     );
 }
