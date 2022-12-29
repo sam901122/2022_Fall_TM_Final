@@ -44,7 +44,6 @@ const NewsProvider = ( props ) => {
         const [task, payload] = JSON.parse( data )
         switch (task) {
             case "rp_beta_get_news": {
-                console.log(payload)
                 setNews(payload)
                 break
             }

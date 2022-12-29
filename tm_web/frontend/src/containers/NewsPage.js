@@ -103,10 +103,8 @@ const NewsPage = () => {
     }
 
     const onClick = (label) => {
-        console.log("click",label)
         setTitle(true)
         setCurLabel(label);
-        console.log("currrrrInClick", curLabel)
     } 
 
     useEffect(() => {
