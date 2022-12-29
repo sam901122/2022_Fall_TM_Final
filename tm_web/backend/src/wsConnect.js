@@ -3,18 +3,10 @@ const { toUSVString } = require('util')
 const fs = require('fs')
 
 const testPath = "../data/test_array.csv"
-const dataFilePath = "../../../src_txt/"
 
 const sendData = ( data, ws ) => {
     ws.send( JSON.stringify( data ) )
 }
-
-const boardcastMessage = ( wss, data ) => {
-    wss.clients.forEach( client => {
-        sendData( data, client )
-    } )
-}
-
 
 // functions
 const getArrayOfFiles = (inputString) => {
@@ -71,10 +63,11 @@ const wsConnect = {
                 case "get_news": {
                     const tmpPath = "../data/" + payload + ".csv"
                     const path = require('path').resolve(__dirname, tmpPath)
+                    console.log(path)
                     const allFilesNameString = fs.readFileSync(path, "utf-8")
                     const allFilesNameArray = getArrayOfFiles(allFilesNameString)
                     const objArray = getNews(allFilesNameArray)
-                    sendData(["rp_beta_get_news", objArray], ws)
+                    sendData(["rp_get_news", objArray], ws)
                     break;
                 }
             }
