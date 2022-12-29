@@ -42,11 +42,13 @@ const CardWrapper=styled.div`
     display: flex;
     width: 100%;
     justify-content: space-evenly;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    background-color: aliceblue;
+    padding-bottom: 70px;
 `
 
 const NewsTitle = () => {
-    const { curLabel, news , beta_get_news} = useNews()
+    const { curLabel, news } = useNews()
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const { Column } = Table;
@@ -62,7 +64,7 @@ const NewsTitle = () => {
     }, [home])
 
 
-    console.log(news)
+    console.log("news",news)
 
     return ( 
         <>

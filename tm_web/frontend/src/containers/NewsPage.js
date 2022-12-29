@@ -104,8 +104,16 @@ const NewsPage = () => {
     const onClick = (label) => {
         setTitle(true)
         setCurLabel(label);
-        get_news(3);
-        console.log("2",news)
+        if(label === "選情"){
+            get_news("type1");
+        }
+        else if(label === "事件"){
+            get_news("type2")
+        }
+        else{
+            get_news("type3")
+        }
+        
     } 
 
     useEffect(() => {
