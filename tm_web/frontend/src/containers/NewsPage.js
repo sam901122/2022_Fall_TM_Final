@@ -4,6 +4,7 @@ import { Button, Card, Col, Row } from "antd";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NewsTitle from "./NewsTitle";
+import { useNews } from "./hooks/useNews";
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -53,16 +54,24 @@ const ColStyle = styled(Col)`
 `
 
 const NewsPage = () => {
+    const { curLabel, setCurLabel } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
     
+    useEffect(()=>{
+        console.log("currrrr", curLabel)
+    },[curLabel])
+
     const onClickHome = () => {
         setHome(true)
     }
 
-    const onClick = () => {
+    const onClick = (label) => {
+        console.log("click",label)
         setTitle(true)
+        setCurLabel(label);
+        console.log("currrrrInClick", curLabel)
     } 
 
     useEffect(() => {
@@ -90,7 +99,7 @@ const NewsPage = () => {
                     {
                         labels.map((label)=>(
                             <ColStyle span={6} id="col">
-                                <CardStyle onClick={onClick} hoverable>
+                                <CardStyle onClick={()=>(onClick(label))} hoverable>
                                     <p style={{
                                         fontSize: "20px"
                                     }}>{label}</p>
