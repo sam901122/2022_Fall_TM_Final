@@ -32,6 +32,15 @@ const getNews = (arrayOfNames) => {
     return returnArray
 }
 
+const getOneType = (type) => {
+    const tmpPath = "../data/type" + type + ".csv"
+    const path = require('path').resolve(__dirname, tmpPath)
+    const allFilesNameString = fs.readFileSync(path, "utf-8")
+    const allFilesNameArray = getArrayOfFiles(allFilesNameString)
+    const objArray = getNews(allFilesNameArray)
+    return objArray
+}
+
 
 // wsConnect
 const wsConnect = {
@@ -65,6 +74,17 @@ const wsConnect = {
                     const allFilesNameArray = getArrayOfFiles(allFilesNameString)
                     const objArray = getNews(allFilesNameArray)
                     sendData(["rp_get_news", objArray], ws)
+                    break;
+                }
+
+                case "get_all_news": {
+                    let returnArray = []
+                    for (let i = 0 ; i < 3 ; i++){
+                        let tmp = getOneType(i+1)
+                        returnArray.push(tmp)
+                    }
+                    console.log(returnArray)
+                    sendData(["rp_get_all_news", returnArray], ws)
                     break;
                 }
             }
