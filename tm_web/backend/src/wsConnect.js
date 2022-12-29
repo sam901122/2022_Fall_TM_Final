@@ -61,6 +61,7 @@ const wsConnect = {
                 case "get_news": {
                     const tmpPath = "../data/" + payload + ".csv"
                     const path = require('path').resolve(__dirname, tmpPath)
+                    console.log(path)
                     const allFilesNameString = fs.readFileSync(path, "utf-8")
                     const allFilesNameArray = getArrayOfFiles(allFilesNameString)
                     const objArray = getNews(allFilesNameArray)
