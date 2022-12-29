@@ -1,5 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
 
+
 const client = new WebSocket('ws://localhost:4000/')
 
 const sendData = async (data) => {
@@ -13,6 +14,9 @@ const NewsContext = createContext(
 
         news: [],
         setNews: () => {},
+
+        curLabel: "",
+        setCurLabel: () => {},
     }
 )
 
@@ -20,6 +24,7 @@ const NewsProvider = ( props ) => {
 
     const [labels, setLabels] = useState(["Pusung, Rain, John, Liang, Alistone"]);
     const [news, setNews] = useState([]);
+    const [ curLabel, setCurLabel ] = useState("");
 
     // sending request
     const beta_get_news = () => {
@@ -47,7 +52,9 @@ const NewsProvider = ( props ) => {
             value={{
                 labels,
                 news,
+                curLabel,
                 beta_get_news,
+                setCurLabel,
             }}
             {...props}
         />

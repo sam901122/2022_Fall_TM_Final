@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.20.7",
     "@babel/node": "^7.20.7",
     "babel-node": "^0.0.1-security",
     "babelrc": "^0.0.7",

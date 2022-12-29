@@ -3,6 +3,7 @@ import { Button, Card, Col, Row } from "antd";
 import { useState,useEffect } from "react";
 import { HomeFilled } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import { useNews } from "../containers/hooks/useNews";
 
 const HeaderStyle = styled.div`
 box-sizing: border-box;
@@ -28,6 +29,7 @@ opacity: 0.3;
 `
 
 const NewsTitle = () => {
+    const { curLabel } = useNews()
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const onClickHome = () => {
@@ -44,7 +46,7 @@ const NewsTitle = () => {
                 <p>政治新聞整理系統</p>
                 <Button onClick={onClickHome}><HomeFilled /></Button>
             </HeaderStyle>
-            <p>title page</p>
+            <p>{curLabel}</p>
         </>
     );
 }
