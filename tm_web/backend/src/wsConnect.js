@@ -21,6 +21,9 @@ const getArrayOfFiles = (inputString) => {
     let array = inputString.split("\n")
     for (let i = 0 ; i < array.length ; i++){
         array[i] = array[i].replace(/\n|\r/g, "")
+        let tmpBackPath = "../../../src_txt/" + array[i]
+        let tmp = require('path').resolve(__dirname, tmpBackPath)
+        array[i] = tmp
     }
     return array
 }
@@ -28,7 +31,7 @@ const getArrayOfFiles = (inputString) => {
 const getNews = (arrayOfNames) => {
     let returnArray = []
     for (let i = 0 ; i < arrayOfNames.length ; i++){
-        let text = fs.readFileSync(String(dataFilePath) + arrayOfNames[i], "utf-8")
+        let text = fs.readFileSync(arrayOfNames[i], "utf-8")
         text = text.split("\n")
         let obj = {}
         obj.title = text[0]
@@ -43,7 +46,8 @@ const getNews = (arrayOfNames) => {
 // wsConnect
 const wsConnect = {
     test: (path) => {
-        const allFilesNameString = fs.readFileSync(path, "utf-8")
+        console.log(require('path').resolve(__dirname, testPath))
+        const allFilesNameString = fs.readFileSync(testPath, "utf-8")
         const allFilesNameArray = getArrayOfFiles(allFilesNameString)
         const objArray = getNews(allFilesNameArray)
         console.log(objArray)
@@ -56,10 +60,11 @@ const wsConnect = {
 
             switch (task) {
                 case "beta_get_news": {
-                    const allFilesNameString = fs.readFileSync(testPath, "utf-8")
+                    const path = require('path').resolve(__dirname, testPath)
+                    const allFilesNameString = fs.readFileSync(path, "utf-8")
                     const allFilesNameArray = getArrayOfFiles(allFilesNameString)
                     const objArray = getNews(allFilesNameArray)
-                    sendData(["rp_beta_get_news", objArray])
+                    sendData(["rp_beta_get_news", objArray], ws)
                     break;
                 }
 
