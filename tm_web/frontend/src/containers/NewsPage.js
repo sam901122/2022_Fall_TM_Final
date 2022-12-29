@@ -54,18 +54,24 @@ const ColStyle = styled(Col)`
 `
 
 const NewsPage = () => {
-    const { curLabel, setCurLabel } = useNews()
+    const { curLabel, setCurLabel } = useNews();
     const navigate = useNavigate();
     const [home, setHome] = useState(false)
     const [title, setTitle] = useState(false)
     
+    useEffect(()=>{
+        console.log("currrrr", curLabel)
+    },[curLabel])
+
     const onClickHome = () => {
         setHome(true)
     }
 
     const onClick = (label) => {
+        console.log("click",label)
         setTitle(true)
-        setCurLabel(label)
+        setCurLabel(label);
+        console.log("currrrrInClick", curLabel)
     } 
 
     useEffect(() => {
@@ -93,7 +99,7 @@ const NewsPage = () => {
                     {
                         labels.map((label)=>(
                             <ColStyle span={6} id="col">
-                                <CardStyle onClick={()=>{onClick(label)}} hoverable>
+                                <CardStyle onClick={()=>(onClick(label))} hoverable>
                                     <p style={{
                                         fontSize: "20px"
                                     }}>{label}</p>

@@ -15,8 +15,9 @@ const NewsContext = createContext(
         news: [],
         setNews: () => {},
 
-        curLabel: "",
+        curLabel: String,
         setCurLabel: () => {},
+
     }
 )
 

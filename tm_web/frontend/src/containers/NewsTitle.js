@@ -35,6 +35,7 @@ const NewsTitle = () => {
     const onClickHome = () => {
         setHome(true)
     }
+    console.log("cur",curLabel)
     useEffect(() => {
         if (home === true) {
             navigate('/');
