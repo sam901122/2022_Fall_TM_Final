@@ -1,0 +1,5 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces The caption of a single sentence does not have period at the end}}{4}{}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Example taken from a paper that was held from production because the image quality is poor. ASME sets figures captions in 8pt, Helvetica Bold.}}{5}{}%
+\contentsline {figure}{\numberline {3}{\ignorespaces While this figures is easily readable at a double column width of 6.5in, when it is shrunk to 3.25in column width the text is unreadable. This paper was held from production.}}{6}{}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Another example of a figure with unreadable text. Even when the paper was expanded to double column width the text as shown in Fig.\nobreakspace {}5\hbox {} was of such low quality that the paper was held from production.}}{6}{}%
+\contentsline {figure}{\numberline {5}{\ignorespaces A figure expanded to double column width the text from Figure\nobreakspace {}4\hbox {}}}{7}{}%
