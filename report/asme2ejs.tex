@@ -28,12 +28,20 @@
 \usepackage{setspace}
 \usepackage{helvet}
 \usepackage{fontspec}
+\usepackage{float}
 \usepackage{xeCJK}
 \usepackage[hyphens]{url}
 %\usepackage{hyphens}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
 \pagestyle{fancy}
-\lhead{{\it Insert ASME Journal Title in the Header Here}}
 \rhead{}
 \renewcommand{\headrulewidth}{0pt}
 \topmargin 80 pt
@@ -43,6 +51,7 @@
 \setCJKmainfont{Microsoft JhengHei UI}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
+\graphicspath{ {./figure/} }
 %\RequirePackage[hyphens]
 
 %% The class has several options
@@ -135,14 +144,84 @@
 接下來我們使用 sklearn 提供的 TruncatedSVD 將 TF-IDF vector 轉成 SVD vector，將維度從 56175 維降成 100 維。
 
 \subsection*{Classification}
-因為每篇文章可以有複數個主題，或是沒有主題，因此我們對「選情」、「事件」、「政策」這三個分別做二元分類。
-我們選擇使用 SVM 進行分類。
-
+因為每篇文章可以有複數個主題，或是沒有主題，因此我們對「選情」、「事件」、「政策」這三個分別二元分類。
+Model 選擇使用 SVM。我們使用 1000 篇有標 label 的文章中的 900 篇進行 model selection（選 kernel）以及 tuning，最後選出來的 model 結果如下：
+\\
+\begin{center}
+        \begin{tabular}{c|c|c|c}
+                Label & Kernel & $C$  & $\gamma$ \\
+                \hline
+                選情  & RBF    & $10$ & $0.1$    \\
+                事件  & RBF    & $1$  & $1$      \\
+                政策  & Linear & $1$  &          \\
+        \end{tabular}
+\end{center}
 
 \section{System outcomes}
+\subsection{Precision \& Recall}
+我們使用剩下的 100 篇文章做 testing，結果如下：
+\begin{center}
+        \begin{tabular}{c|c|c}
+                Label & Precision & recall \\
+                \hline
+                選情  & $0.77$    & $0.80$ \\
+                事件  & $0.95$    & $0.82$ \\
+                政策  & $0.88$    & $0.62$ \\
+        \end{tabular}
+\end{center}
+三個 Label 中以「事件」的效果為最佳，precision 甚至達到 0.95。「選情」跟「政策」則是 precision 跟 recall 都較低。
+
+\subsection{Curve}
+我們也將結果畫成 Precision recall curve:
+\begin{figure*}
+        \includegraphics[width=\textwidth]{pr_curve}
+\end{figure*}
+
+從圖中可以看到「事件」類別 model 較有把握的真的都判對，且效果比另外兩個 Label 明顯好蠻多的。
 
 \section{Conclusions}
+分類的效果以「事件」類別最佳，我們推測主要有兩個原因：
+\begin{enumerate}
+        \item 「事件」類別的新聞較多：在 $900$ 筆訓練資料中，有 $448$ 筆屬於「事件」類別。反觀「選情」及「政策」，分別只有 $365$ 篇及 $199$ 篇。
+        \item 「事件」類別的關鍵字較為集中：事件類別大多都會針對同一候選人、同一爭議。在標資料的過程中，「林智堅」、「高虹安」、「論文」、「抄襲」、「公積金」、「助理費」、「資策會」等等關鍵字也時常反覆出現，因此猜測在向量空間中，這些關鍵字雖然被降維了，但還是有很重的份量，導致「事件」類別較容易判讀。而「選情」、「政策」類別內容則可能較為分散，尤其是政策，很多文章都只有簡單提到一些重點政見的 slogan，很少文章有花大篇幅說明政見，因此在向量空間中，「政策」類別可能較為零散
+\end{enumerate}
+
+
+\section{web page}
+最後有將網頁實作出來，並將剩下的 1787 篇沒有標 label 的文章丟到訓練好的 model 中分類。
+
+\subsection{初始頁面}
+進入初始頁面後，可以選擇想要查看的縣市。目前只有新竹市有資料
+\begin{figure}[H]
+        \includegraphics[scale=0.2]{start}
+        \caption{初始頁面}
+\end{figure}
+\subsection{某縣市類別頁面}
+點擊該縣市後，即可進入該縣市的類別頁面。在這個頁面中會秀出「選情」、「事件」、「政策」類別中的其中一些新聞
+
+\begin{figure}[H]
+        \includegraphics[scale=0.2]{outline}
+        \caption{新竹市類別頁面}
+\end{figure}
+
+\subsection{類別新聞}
+選擇某個類別，可以進入該類別的頁面。裡面會顯示所有屬於這個類別的新聞。
+下圖是進入了「事件」的類別，可以看到圖中有許多關於林智堅論文爭議的新聞。
+
+\begin{figure}[H]
+        \includegraphics[scale=0.2]{event}
+        \caption{「事件」類別新聞}
+\end{figure}
+
+\subsection{瀏覽新聞}
+選擇某一則新聞即可瀏覽全文，也會附上該篇新聞的連結。
+
+\begin{figure}[H]
+        \includegraphics[scale=0.2]{news}
+        \caption{瀏覽新聞}
+\end{figure}
 
 \section{References}
-
+Seung-Shik Kang, ``Keyword-based Document Clustering" \\
+（原本打算用 clustering 將不同政策分群，但後來改變方向就沒有使用了）
 \end{document}
