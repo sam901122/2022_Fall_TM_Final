@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1672586800 "asme2ejs.xdv" "asme2ejs.pdf" "asme2ejs" 1672586801
-  "asme2ejs.xdv" 1672586800 4316 cc8aad13f491345843d5aea331053eaf "xelatex"
+["xdvipdfmx"] 1672975240 "asme2ejs.xdv" "asme2ejs.pdf" "asme2ejs" 1672975241
+  "asme2ejs.xdv" 1672975240 31708 e381d7809fadd5777e2a5b94c9e95b63 "xelatex"
   (generated)
   "asme2ejs.pdf"
-["xelatex"] 1672586799 "c:/PuSung/University/111_Junior/111-1 Academic/Text Mining/Final/2022_Fall_TM_Final/report/asme2ejs.tex" "asme2ejs.xdv" "asme2ejs" 1672586801
+["xelatex"] 1672975239 "c:/PuSung/University/111_Junior/111-1 Academic/Text Mining/Final/2022_Fall_TM_Final/report/asme2ejs.tex" "asme2ejs.xdv" "asme2ejs" 1672975241
   "C:/Users/PuSung/AppData/Local/MiKTeX/miktex/data/le/xetex/xelatex.fmt" 1662617345 23671844 100acad70252250e10755d8d74b207e4 ""
   "C:/Users/PuSung/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136743454 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
   "C:/Users/PuSung/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/helvetic/phvr7t.tfm" 1136743454 2520 53e01eef820ca829e42c1333c3fd02b9 ""
@@ -50,9 +50,9 @@
   "C:/Users/PuSung/AppData/Local/Programs/MiKTeX/tex/xelatex/xecjk/xeCJK.sty" 1659726270 183137 ed372550124703b2b73cbcc0b47cb20f ""
   "C:/Users/PuSung/AppData/Local/Programs/MiKTeX/tex/xelatex/xecjk/xeCJKfntef.sty" 1659726270 39577 b470f8a1dbecc9c45c9bf05ca7db9188 ""
   "asme2ej.cls" 1672585673 47988 507fbf37215e182d253cc7cac61956a0 ""
-  "asme2ejs.aux" 1672586800 538 ea537f24c03b690416c6151a3f6aa15b "xelatex"
-  "asme2ejs.tex" 1672586798 3346 4adf14cada90bd18e274511efba3a607 ""
-  "c:/PuSung/University/111_Junior/111-1 Academic/Text Mining/Final/2022_Fall_TM_Final/report/asme2ejs.tex" 1672586798 3346 4adf14cada90bd18e274511efba3a607 ""
+  "asme2ejs.aux" 1672975240 1288 2fb9ff486bdceb76e6fad2ea67c60cc5 "xelatex"
+  "asme2ejs.tex" 1672975238 7619 90a22bce4f52b93f15a3cdf0dbdb3ccd ""
+  "c:/PuSung/University/111_Junior/111-1 Academic/Text Mining/Final/2022_Fall_TM_Final/report/asme2ejs.tex" 1672975238 7619 90a22bce4f52b93f15a3cdf0dbdb3ccd ""
   (generated)
   "asme2ejs.aux"
   "asme2ejs.log"
